@@ -2,7 +2,7 @@
   <header class="sarabun-semibold">
     <navbar-ui>
       <template v-slot:title>
-        <img src="/favicon.png" width="30" class="rounded-pill" />
+        <img src="https://firebasestorage.googleapis.com/v0/b/nornedb.appspot.com/o/favicon.png?alt=media" width="30" class="rounded-pill" />
       </template>
       <template v-slot:navbar>
         <navbar-in-ui to="/">หน้าหลัก</navbar-in-ui>
