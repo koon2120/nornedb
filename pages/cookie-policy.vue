@@ -2,8 +2,8 @@
 const appConfig = useAppConfig();
 
 useSeoMeta({
-  title: `อัพเดท - ${appConfig.website_name}`,
-  ogTitle: `อัพเดท - ${appConfig.website_name}`,
+  title: `นโยบายการใช้งานคุกกี้ - ${appConfig.website_name}`,
+  ogTitle: `นโยบายการใช้งานคุกกี้ - ${appConfig.website_name}`,
   description: appConfig.default_og_description,
   ogDescription: appConfig.default_og_description,
   ogImage: appConfig.default_og_image,
@@ -12,5 +12,5 @@ useSeoMeta({
 </script>
 
 <template>
-  <comingsoon-page/>
+    <comingsoon-page/>
 </template>

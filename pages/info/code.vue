@@ -7,7 +7,7 @@ useSeoMeta({
   description: appConfig.default_og_description,
   ogDescription: appConfig.default_og_description,
   ogImage: appConfig.default_og_image,
-  twitterCard: appConfig.default_og_image,
+  twitterCard: 'summary_large_image',
 });
 
 const codelist = [
