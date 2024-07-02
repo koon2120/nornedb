@@ -1,5 +1,46 @@
 <script setup>
+import { createClient } from "@supabase/supabase-js";
+
 const appConfig = useAppConfig();
+const supabase = createClient(appConfig.supabaseUrl, appConfig.supabaseKey);
+
+const yggdra_item_code = ref([]);
+const yggdra_item_code_update = ref("กำลังโหลด...");
+const yggdra_item_code_dropdown_options = ref("แสดงโค้ดทั้งหมด");
+
+function yggdra_item_code_dropdown_change() {
+  if (yggdra_item_code_dropdown_options.value == "แสดงโค้ดที่ยังใช้ได้") {
+    yggdra_item_code_dropdown_options.value = "แสดงโค้ดทั้งหมด";
+  } else {
+    yggdra_item_code_dropdown_options.value = "แสดงโค้ดที่ยังใช้ได้";
+  }
+  getData();
+}
+
+async function getData() {
+  yggdra_item_code.value = [{ code: "กำลังโหลด...", receive: "กำลังโหลด..." }];
+  if (yggdra_item_code_dropdown_options.value == "แสดงโค้ดทั้งหมด") {
+    const get_yggdra_item_code = await supabase
+      .from("yggdra_item_code")
+      .select()
+      .eq("active", true);
+    yggdra_item_code.value = get_yggdra_item_code.data;
+  } else {
+    const get_yggdra_item_code = await supabase
+      .from("yggdra_item_code")
+      .select();
+    yggdra_item_code.value = get_yggdra_item_code.data;
+  }
+  const get_yggdra_item_code_update = await supabase
+    .from("nornedb_webconfig")
+    .select("value")
+    .eq("key", "yggdra_item_code_update");
+  yggdra_item_code_update.value = get_yggdra_item_code_update.data[0].value;
+}
+
+onMounted(() => {
+  getData();
+});
 
 useSeoMeta({
   title: `รวมโค้ดเกม - ${appConfig.website_name}`,
@@ -7,19 +48,8 @@ useSeoMeta({
   description: appConfig.default_og_description,
   ogDescription: appConfig.default_og_description,
   ogImage: appConfig.default_og_image,
-  twitterCard: 'summary_large_image',
+  twitterCard: "summary_large_image",
 });
-
-const codelist = [
-  {"code":"HBDERICA","receive":"20 ชิ้นส่วนเอริกะ, 2 คุกกี้โฮมเมดสำหรับเป็นของขวัญ, 2 เค้กคุณภาพดี, 2 ข้าวกล่องทำเอง"},
-  {"code":"99PARTY","receive":"150,000 เอเรส"},
-  {"code":"PRAMOTE99","receive":"5 ตั๋วอัญเชิญวัลคีรี"},
-  {"code":"CELEB99","receive":"200 สตามิน่า"},
-  {"code":"DAY99GIFT","receive":"150,000 EXP"},
-  {"code":"NINETY9","receive":"150,000 เอเรส"},
-]
-
-const last_update = "30/6/2567"
 </script>
 
 <template>
@@ -32,11 +62,18 @@ const last_update = "30/6/2567"
       </tr>
     </thead>
     <tbody>
-      <tr v-for="code in codelist">
+      <tr v-for="code in yggdra_item_code">
         <td>{{ code.code }}</td>
         <td>{{ code.receive }}</td>
       </tr>
     </tbody>
   </table>
-  <p>อัพเดทล่าสุดเมื่อวันที่ : {{ last_update }}</p>
+  <button
+    type="button"
+    class="btn btn-secondary btn-sm mb-3"
+    @click="yggdra_item_code_dropdown_change"
+  >
+    {{ yggdra_item_code_dropdown_options }}
+  </button>
+  <p>อัพเดทล่าสุดเมื่อวันที่ : {{ yggdra_item_code_update }}</p>
 </template>
