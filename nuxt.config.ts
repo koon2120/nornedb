@@ -31,5 +31,11 @@ export default defineNuxtConfig({
       },
     }
   },
-  css: ['~/assets/css/global.css']
+  css: ['~/assets/css/global.css'],
+  runtimeConfig: {
+    public:{
+      supabaseUrl:"https://wcqoupeoqnvolpczgpkx.supabase.co",
+      supabaseKey:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndjcW91cGVvcW52b2xwY3pncGt4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTk4NjE0NDksImV4cCI6MjAzNTQzNzQ0OX0.327D6AstH6j4Hk63-yH4RgLRhFEoL4qblvNEVXSpTAY"
+    }
+  }
 })

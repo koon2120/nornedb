@@ -1,46 +1,6 @@
 <script setup>
-import { createClient } from "@supabase/supabase-js";
-
 const appConfig = useAppConfig();
-const supabase = createClient(appConfig.supabaseUrl, appConfig.supabaseKey);
-
-const yggdra_item_code = ref([]);
-const yggdra_item_code_update = ref("กำลังโหลด...");
-const yggdra_item_code_dropdown_options = ref("แสดงโค้ดทั้งหมด");
-
-function yggdra_item_code_dropdown_change() {
-  if (yggdra_item_code_dropdown_options.value == "แสดงโค้ดที่ยังใช้ได้") {
-    yggdra_item_code_dropdown_options.value = "แสดงโค้ดทั้งหมด";
-  } else {
-    yggdra_item_code_dropdown_options.value = "แสดงโค้ดที่ยังใช้ได้";
-  }
-  getData();
-}
-
-async function getData() {
-  yggdra_item_code.value = [{ code: "กำลังโหลด...", receive: "กำลังโหลด..." }];
-  if (yggdra_item_code_dropdown_options.value == "แสดงโค้ดทั้งหมด") {
-    const get_yggdra_item_code = await supabase
-      .from("yggdra_item_code")
-      .select()
-      .eq("active", true);
-    yggdra_item_code.value = get_yggdra_item_code.data;
-  } else {
-    const get_yggdra_item_code = await supabase
-      .from("yggdra_item_code")
-      .select();
-    yggdra_item_code.value = get_yggdra_item_code.data;
-  }
-  const get_yggdra_item_code_update = await supabase
-    .from("nornedb_webconfig")
-    .select("value")
-    .eq("key", "yggdra_item_code_update");
-  yggdra_item_code_update.value = get_yggdra_item_code_update.data[0].value;
-}
-
-onMounted(() => {
-  getData();
-});
+const { $supabase } = useNuxtApp();
 
 useSeoMeta({
   title: `รวมโค้ดเกม - ${appConfig.website_name}`,
@@ -49,6 +9,49 @@ useSeoMeta({
   ogDescription: appConfig.default_og_description,
   ogImage: appConfig.default_og_image,
   twitterCard: "summary_large_image",
+});
+
+const yggdra_item_code = useState("yggdra_item_code", () => []);
+const yggdra_item_code_update = useState("yggdra_item_code_update", () => '');
+const yggdra_item_code_dropdown_options = useState(
+  "yggdra_item_code_dropdown_options",
+  () => true
+);
+
+function yggdra_item_code_dropdown_change() {
+  yggdra_item_code_dropdown_options.value = !yggdra_item_code_dropdown_options.value
+}
+
+async function getYggdraItemCode() {
+  yggdra_item_code.value = [{ code: "กำลังโหลด...", receive: "กำลังโหลด...", active: true }];
+  if (yggdra_item_code_dropdown_options.value == "แสดงโค้ดทั้งหมด") {
+    const get_yggdra_item_code = await $supabase
+      .from("yggdra_item_code")
+      .select()
+      .eq("active", true);
+    yggdra_item_code.value = get_yggdra_item_code.data;
+  } else {
+    const get_yggdra_item_code = await $supabase
+      .from("yggdra_item_code")
+      .select();
+    yggdra_item_code.value = get_yggdra_item_code.data;
+  }
+}
+
+async function getYggdraItemCodeUpdate() {
+  yggdra_item_code_update.value = "กำลังโหลด..."
+  const get_yggdra_item_code_update = await $supabase
+    .from("nornedb_webconfig")
+    .select("value")
+    .eq("key", "yggdra_item_code_update");
+  yggdra_item_code_update.value = get_yggdra_item_code_update.data[0].value;
+}
+
+onMounted(() => {
+  if (yggdra_item_code.value == false || yggdra_item_code_update.value == false) {
+    getYggdraItemCode()
+    getYggdraItemCodeUpdate()
+  }
 });
 </script>
 
@@ -61,7 +64,13 @@ useSeoMeta({
         <th scope="col">ได้รับ</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody v-if="yggdra_item_code_dropdown_options">
+      <tr v-for="code in yggdra_item_code" v-show="code.active">
+        <td>{{ code.code }}</td>
+        <td>{{ code.receive }}</td>
+      </tr>
+    </tbody>
+    <tbody v-else>
       <tr v-for="code in yggdra_item_code">
         <td>{{ code.code }}</td>
         <td>{{ code.receive }}</td>
@@ -73,7 +82,7 @@ useSeoMeta({
     class="btn btn-secondary btn-sm mb-3"
     @click="yggdra_item_code_dropdown_change"
   >
-    {{ yggdra_item_code_dropdown_options }}
+    {{ yggdra_item_code_dropdown_options ? "แสดงโค้ดทั้งหมด" : "แสดงโค้ดที่ยังใช้ได้" }}
   </button>
   <p>อัพเดทล่าสุดเมื่อวันที่ : {{ yggdra_item_code_update }}</p>
 </template>
