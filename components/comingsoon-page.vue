@@ -1,7 +1,7 @@
 <template>
   <div class="text-center mt-5">
     <img
-      src="https://firebasestorage.googleapis.com/v0/b/nornedb.appspot.com/o/images%2Fillustration_sd_erica_000_sad.png?alt=media"
+      src="https://wcqoupeoqnvolpczgpkx.supabase.co/storage/v1/object/public/WebAssets/images/illustration_sd_erica_000_sad.png"
       width="300"
     />
     <h1>หน้านี้ยังไม่พร้อมใช้งาน</h1>
