@@ -1,9 +1,13 @@
+<script setup>
+const appconfig = useAppConfig()
+</script>
+
 <template>
   <header class="sarabun-semibold">
     <navbar-ui>
       <template v-slot:title>
         <img
-          src="https://firebasestorage.googleapis.com/v0/b/nornedb.appspot.com/o/favicon.png?alt=media"
+          :src="appconfig.nornedb_logo"
           width="30"
           class="rounded-pill"
         />

@@ -7,13 +7,13 @@ useSeoMeta({
   description: appConfig.default_og_description,
   ogDescription: appConfig.default_og_description,
   ogImage: appConfig.default_og_image,
-  twitterCard: 'summary_large_image',
+  twitterCard: "summary_large_image",
 });
 </script>
 
 <template>
   <div class="text-center my-5">
-    <h1 class="display-1 fw-bold">สวัสดีทุกท่าน!</h1>
+    <h1 class="display-1 fw-bold">NorneDB</h1>
     <p class="lead">
       ขอต้อนรับสู่เว็บ NorneDB เว็บไซต์ที่รวบรวมข่าวสารและข้อมูลของเกม Yggdra
       Chronicle
@@ -40,7 +40,9 @@ useSeoMeta({
           <p class="card-text text-body-secondary">
             รวมข้อมูลนักพากย์ของเกม<br />ทั้งเก่าและใหม่
           </p>
-          <NuxtLink class="btn btn-body-secondary disabled">ยังไม่พร้อม</NuxtLink>
+          <NuxtLink class="btn btn-body-secondary disabled"
+            >ยังไม่พร้อม</NuxtLink
+          >
         </div>
       </div>
     </div>
@@ -51,7 +53,9 @@ useSeoMeta({
           <p class="card-text text-body-secondary">
             ไกด์คร่าวๆ เกี่ยวกับการเล่นเกม<br />Yggdra Chronicle
           </p>
-          <NuxtLink class="btn btn-body-secondary disabled">ยังไม่พร้อม</NuxtLink>
+          <NuxtLink class="btn btn-body-secondary disabled"
+            >ยังไม่พร้อม</NuxtLink
+          >
         </div>
       </div>
     </div>
@@ -62,7 +66,9 @@ useSeoMeta({
           <p class="card-text text-body-secondary">
             ข้อมูลต่างๆ ของตัวละครในเกม<br />Yggdra Chronicle
           </p>
-          <NuxtLink class="btn btn-body-secondary disabled">ยังไม่พร้อม</NuxtLink>
+          <NuxtLink class="btn btn-body-secondary disabled"
+            >ยังไม่พร้อม</NuxtLink
+          >
         </div>
       </div>
     </div>
@@ -74,15 +80,21 @@ useSeoMeta({
           <h1 class="card-title mb-4 fw-bold">เกี่ยวกับ NorneDB</h1>
           <div class="card-text">
             <p>
-              <strong>NorneDB</strong> เป็นเว็บไซต์สำหรับเก็บรวบรวมข้อมูลของตัวเกม <strong>Yggdra
-              Chronicle</strong> โดยข้อมูลในเว็บนี้ได้มาจากการเก็บข้อมูลในเกมโดยตรง
+              <strong>NorneDB</strong>
+              เป็นเว็บไซต์สำหรับเก็บรวบรวมข้อมูลของตัวเกม
+              <strong>Yggdra Chronicle</strong>
+              โดยข้อมูลในเว็บนี้ได้มาจากการเก็บข้อมูลในเกมโดยตรง
               และอาจมีข้อมูลจากแหล่งข้อมูลช่องทางต่างๆ ด้วย
               เว็บไซต์นี้จะมีการอัพเดทเรื่อยๆ เมื่อหากมี Content ใหม่ๆ เข้ามา
               และทุกท่านสามารถเข้ามาร่วมแบ่งบันข้อมูลได้ในเร็วๆ นี้
             </p>
             <p>
-              ส่วนทำไมเว็บต้องชื่อว่า <strong>NorneDB..?</strong><br>
-              ก็เพราะว่า <strong>Norne</strong> ก็คือตัวละครที่จะอยู่กับผู้เล่นตลอดเวลา <span class="text-dark-emphasis">(คล้ายๆ Arona ของ Blue Archive)</span>
+              ส่วนทำไมเว็บต้องชื่อว่า <strong>NorneDB..?</strong><br />
+              ก็เพราะว่า
+              <strong>Norne</strong> ก็คือตัวละครที่จะอยู่กับผู้เล่นตลอดเวลา
+              <span class="text-dark-emphasis"
+                >(คล้ายๆ Arona ของ Blue Archive)</span
+              >
             </p>
           </div>
         </div>
@@ -111,13 +123,41 @@ useSeoMeta({
     </div>
   </div>
   <div class="row justify-content-center my-3">
-    <div class="col-md-4 my-2"><img class="img-fluid rounded" src="https://yggdra.bfg.in.th/assets/wallpaper-3.1fe012d9.jpg" width="500px"></div>
-    <div class="col-md-4 my-2"><img class="img-fluid rounded" src="https://yggdra.bfg.in.th/assets/wallpaper-2.a0d6bb06.jpg" width="500px"></div>
-    <div class="col-md-4 my-2"><img class="img-fluid rounded" src="https://yggdra.bfg.in.th/assets/wallpaper-1.879cd90c.jpg" width="500px"></div>
+    <div class="col-md-4 my-2">
+      <img
+        class="img-fluid rounded"
+        src="https://yggdra.bfg.in.th/assets/wallpaper-3.1fe012d9.jpg"
+        width="500px"
+      />
+    </div>
+    <div class="col-md-4 my-2">
+      <img
+        class="img-fluid rounded"
+        src="https://yggdra.bfg.in.th/assets/wallpaper-2.a0d6bb06.jpg"
+        width="500px"
+      />
+    </div>
+    <div class="col-md-4 my-2">
+      <img
+        class="img-fluid rounded"
+        src="https://yggdra.bfg.in.th/assets/wallpaper-1.879cd90c.jpg"
+        width="500px"
+      />
+    </div>
   </div>
   <div class="row row-cols-auto justify-content-center mt-5">
-    <div class="col"><NuxtLink to="/privacy-policy" class="fw-normal h6">นโยบายความเป็นส่วนตัว</NuxtLink></div>
-    <div class="col"><NuxtLink to="/cookie-policy" class="fw-normal h6">นโยบายการใช้งานคุกกี้</NuxtLink></div>
-    <div class="col"><NuxtLink to="https://yggdra.bfg.in.th/" target="_blank" class="fw-normal h6">เว็บไซต์อย่างเป็นทางการของเกม</NuxtLink></div> 
+    <div class="col">
+      <NuxtLink to="/privacy-policy" class="fw-normal h6"
+        >นโยบายความเป็นส่วนตัว</NuxtLink
+      >
+    </div>
+    <div class="col">
+      <NuxtLink
+        to="https://yggdra.bfg.in.th/"
+        target="_blank"
+        class="fw-normal h6"
+        >เว็บไซต์อย่างเป็นทางการของเกม</NuxtLink
+      >
+    </div>
   </div>
 </template>
