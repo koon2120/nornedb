@@ -1,6 +1,6 @@
 <script setup>
 const appConfig = useAppConfig();
-const { $supabase } = useNuxtApp();
+const supabase = useSupabaseClient();
 
 useSeoMeta({
   title: `รวมโค้ดเกม - ${appConfig.website_name}`,
@@ -11,48 +11,30 @@ useSeoMeta({
   twitterCard: "summary_large_image",
 });
 
-const yggdra_item_code = useState("yggdra_item_code", () => []);
-const yggdra_item_code_update = useState("yggdra_item_code_update", () => '');
 const yggdra_item_code_dropdown_options = useState(
   "yggdra_item_code_dropdown_options",
   () => true
 );
 
 function yggdra_item_code_dropdown_change() {
-  yggdra_item_code_dropdown_options.value = !yggdra_item_code_dropdown_options.value
+  yggdra_item_code_dropdown_options.value =
+    !yggdra_item_code_dropdown_options.value;
 }
 
-async function getYggdraItemCode() {
-  yggdra_item_code.value = [{ code: "กำลังโหลด...", receive: "กำลังโหลด...", active: true }];
-  if (yggdra_item_code_dropdown_options.value == "แสดงโค้ดทั้งหมด") {
-    const get_yggdra_item_code = await $supabase
-      .from("yggdra_item_code")
-      .select()
-      .eq("active", true);
-    yggdra_item_code.value = get_yggdra_item_code.data;
-  } else {
-    const get_yggdra_item_code = await $supabase
-      .from("yggdra_item_code")
-      .select();
-    yggdra_item_code.value = get_yggdra_item_code.data;
-  }
-}
+const { data : yggdra_item_code} = await useAsyncData("yggdra_item_code", async () => {
+  const { data } = await supabase
+    .from("yggdra_item_code")
+    .select()
+  return data
+});
 
-async function getYggdraItemCodeUpdate() {
-  yggdra_item_code_update.value = "กำลังโหลด..."
-  const get_yggdra_item_code_update = await $supabase
+const { data : yggdra_item_code_update } = await useAsyncData("yggdra_item_code_update", async () => {
+  const { data } = await supabase
     .from("nornedb_webconfig")
     .select("value")
-    .eq("key", "yggdra_item_code_update");
-  yggdra_item_code_update.value = get_yggdra_item_code_update.data[0].value;
-}
-
-onMounted(() => {
-  if (yggdra_item_code.value == false || yggdra_item_code_update.value == false) {
-    getYggdraItemCode()
-    getYggdraItemCodeUpdate()
-  }
-});
+    .eq("key", "yggdra_item_code_update")
+    return data
+})
 </script>
 
 <template>
@@ -66,14 +48,14 @@ onMounted(() => {
     </thead>
     <tbody v-if="yggdra_item_code_dropdown_options">
       <tr v-for="code in yggdra_item_code" v-show="code.active">
-        <td>{{ code.code }}</td>
+        <td>{{ code.code }} <span v-show="code.is_new" class="badge text-bg-danger">New</span></td>
         <td>{{ code.receive }}</td>
       </tr>
     </tbody>
     <tbody v-else>
       <tr v-for="code in yggdra_item_code">
-        <td>{{ code.code }}</td>
-        <td>{{ code.receive }}</td>
+        <td :class="{'text-danger':!code.active}">{{ code.code }} <span v-show="code.is_new" class="badge text-bg-danger">New</span></td>
+        <td :class="{'text-danger':!code.active}">{{ code.receive }}</td>
       </tr>
     </tbody>
   </table>
@@ -82,7 +64,11 @@ onMounted(() => {
     class="btn btn-secondary btn-sm mb-3"
     @click="yggdra_item_code_dropdown_change"
   >
-    {{ yggdra_item_code_dropdown_options ? "แสดงโค้ดทั้งหมด" : "แสดงโค้ดที่ยังใช้ได้" }}
+    {{
+      yggdra_item_code_dropdown_options
+        ? "แสดงโค้ดทั้งหมด"
+        : "แสดงโค้ดที่ยังใช้ได้"
+    }}
   </button>
-  <p>อัพเดทล่าสุดเมื่อวันที่ : {{ yggdra_item_code_update }}</p>
+  <p>อัพเดทล่าสุดเมื่อวันที่ : {{ yggdra_item_code_update[0].value }}</p>
 </template>

@@ -1,16 +1,27 @@
 <script setup>
-const appconfig = useAppConfig()
+const appconfig = useAppConfig();
+
+const { progress } = useLoadingIndicator();
+
+
 </script>
 
 <template>
   <header class="sarabun-semibold">
+    <div
+      class="progress"
+      role="progressbar"
+      aria-label="Example 1px high"
+      :aria-valuenow="progress"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      style="height: 1px"
+    >
+      <div class="progress-bar bg-secondary" :style="{width: progress+'%'}"></div>
+    </div>
     <navbar-ui>
       <template v-slot:title>
-        <img
-          :src="appconfig.nornedb_logo"
-          width="30"
-          class="rounded-pill"
-        />
+        <img :src="appconfig.nornedb_logo" width="30" class="rounded-pill" />
       </template>
       <template v-slot:navbar>
         <navbar-in-ui to="/">หน้าหลัก</navbar-in-ui>
