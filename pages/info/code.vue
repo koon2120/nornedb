@@ -25,6 +25,7 @@ const { data : yggdra_item_code} = await useAsyncData("yggdra_item_code", async 
   const { data } = await supabase
     .from("yggdra_item_code")
     .select()
+    .order("id",{ascending:true})
   return data
 });
 
