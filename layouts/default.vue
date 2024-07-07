@@ -27,6 +27,7 @@ const { progress } = useLoadingIndicator();
         <navbar-in-ui to="/">หน้าหลัก</navbar-in-ui>
         <dropdown-menu-ui label="ข้อมูลทั่วไป">
           <dropdown-menu-in-ui to="/info/code">รวมโค้ดเกม</dropdown-menu-in-ui>
+          <dropdown-menu-in-ui to="/info/seiyuu">ข้อมูลนักพากย์</dropdown-menu-in-ui>
         </dropdown-menu-ui>
         <dropdown-menu-ui
           label="ข้อมูลภายในเกม"

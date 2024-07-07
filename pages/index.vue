@@ -40,8 +40,8 @@ useSeoMeta({
           <p class="card-text text-body-secondary">
             รวมข้อมูลนักพากย์ของเกม<br />ทั้งเก่าและใหม่
           </p>
-          <NuxtLink class="btn btn-body-secondary disabled"
-            >ยังไม่พร้อม</NuxtLink
+          <NuxtLink to="/info/seiyuu" class="btn btn-secondary"
+            >คลิกที่นี่</NuxtLink
           >
         </div>
       </div>

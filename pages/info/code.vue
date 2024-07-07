@@ -21,55 +21,54 @@ function yggdra_item_code_dropdown_change() {
     !yggdra_item_code_dropdown_options.value;
 }
 
-const { data : yggdra_item_code} = await useAsyncData("yggdra_item_code", async () => {
+const { data: yggdra_item_code } = await useAsyncData("yggdra_item_code", async () => {
   const { data } = await supabase
     .from("yggdra_item_code")
     .select()
-    .order("id",{ascending:true})
+    .order("id", { ascending: true })
   return data
 });
 
-const { data : yggdra_item_code_update } = await useAsyncData("yggdra_item_code_update", async () => {
+const { data: yggdra_item_code_update } = await useAsyncData("yggdra_item_code_update", async () => {
   const { data } = await supabase
     .from("nornedb_webconfig")
     .select("value")
     .eq("key", "yggdra_item_code_update")
-    return data
+  return data
 })
 </script>
 
 <template>
-  <h1 class="text-center"><strong>รวมโค้ดเกม</strong></h1>
-  <table class="table table-sm">
-    <thead>
-      <tr>
-        <th scope="col">โค้ด</th>
-        <th scope="col">ได้รับ</th>
-      </tr>
-    </thead>
-    <tbody v-if="yggdra_item_code_dropdown_options">
-      <tr v-for="code in yggdra_item_code" v-show="code.active">
-        <td>{{ code.code }} <span v-show="code.is_new" class="badge text-bg-danger">New</span></td>
-        <td>{{ code.receive }}</td>
-      </tr>
-    </tbody>
-    <tbody v-else>
-      <tr v-for="code in yggdra_item_code">
-        <td :class="{'text-danger':!code.active}">{{ code.code }} <span v-show="code.is_new" class="badge text-bg-danger">New</span></td>
-        <td :class="{'text-danger':!code.active}">{{ code.receive }}</td>
-      </tr>
-    </tbody>
-  </table>
-  <button
-    type="button"
-    class="btn btn-secondary btn-sm mb-3"
-    @click="yggdra_item_code_dropdown_change"
-  >
+  <h1 class="text-center my-4"><strong>รวมโค้ดเกม</strong></h1>
+  <div class="table-responsive">
+    <table class="table table-sm">
+      <caption>อัพเดทล่าสุดเมื่อวันที่ : {{ yggdra_item_code_update[0].value }}</caption>
+      <thead>
+        <tr>
+          <th scope="col">โค้ด</th>
+          <th scope="col">ได้รับ</th>
+        </tr>
+      </thead>
+      <tbody class="table-group-divider" v-if="yggdra_item_code_dropdown_options">
+        <tr v-for="code in yggdra_item_code" v-show="code.active">
+          <td>{{ code.code }} <span v-show="code.is_new" class="badge text-bg-danger">New</span></td>
+          <td>{{ code.receive }}</td>
+        </tr>
+      </tbody class="table-group-divider">
+      <tbody v-else>
+        <tr v-for="code in yggdra_item_code">
+          <td :class="{ 'text-danger': !code.active }">{{ code.code }} <span v-show="code.is_new"
+              class="badge text-bg-danger">New</span></td>
+          <td :class="{ 'text-danger': !code.active }">{{ code.receive }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <button type="button" class="btn btn-secondary btn-sm mb-3" @click="yggdra_item_code_dropdown_change">
     {{
       yggdra_item_code_dropdown_options
         ? "แสดงโค้ดทั้งหมด"
         : "แสดงโค้ดที่ยังใช้ได้"
     }}
   </button>
-  <p>อัพเดทล่าสุดเมื่อวันที่ : {{ yggdra_item_code_update[0].value }}</p>
 </template>
