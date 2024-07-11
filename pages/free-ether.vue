@@ -1,4 +1,15 @@
 <script setup>
+const appConfig = useAppConfig();
+
+useSeoMeta({
+  title: `คลิกเพื่อรับอีเทอร์ฟรี!!! - ${appConfig.website_name}`,
+  ogTitle: `คลิกเพื่อรับอีเทอร์ฟรี!!! - ${appConfig.website_name}`,
+  description: appConfig.default_og_description,
+  ogDescription: appConfig.default_og_description,
+  ogImage: appConfig.default_og_image,
+  twitterCard: "summary_large_image",
+});
+
 const link = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
 
 await navigateTo(link, {

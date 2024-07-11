@@ -66,8 +66,8 @@ useSeoMeta({
           <p class="card-text text-body-secondary">
             ข้อมูลต่างๆ ของตัวละครในเกม<br />Yggdra Chronicle
           </p>
-          <NuxtLink class="btn btn-body-secondary disabled"
-            >ยังไม่พร้อม</NuxtLink
+          <NuxtLink to="/data/character" class="btn btn-secondary"
+            >คลิกที่นี่</NuxtLink
           >
         </div>
       </div>

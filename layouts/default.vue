@@ -2,8 +2,6 @@
 const appconfig = useAppConfig();
 
 const { progress } = useLoadingIndicator();
-
-
 </script>
 
 <template>
@@ -17,7 +15,10 @@ const { progress } = useLoadingIndicator();
       aria-valuemax="100"
       style="height: 1px"
     >
-      <div class="progress-bar bg-secondary" :style="{width: progress+'%'}"></div>
+      <div
+        class="progress-bar bg-secondary"
+        :style="{ width: progress + '%' }"
+      ></div>
     </div>
     <navbar-ui>
       <template v-slot:title>
@@ -29,10 +30,9 @@ const { progress } = useLoadingIndicator();
           <dropdown-menu-in-ui to="/info/code">รวมโค้ดเกม</dropdown-menu-in-ui>
           <dropdown-menu-in-ui to="/info/seiyuu">ข้อมูลนักพากย์</dropdown-menu-in-ui>
         </dropdown-menu-ui>
-        <dropdown-menu-ui
-          label="ข้อมูลภายในเกม"
-          disabled="true"
-        ></dropdown-menu-ui>
+        <dropdown-menu-ui label="ข้อมูลภายในเกม">
+          <dropdown-menu-in-ui to="/data/character">ข้อมูลตัวละคร</dropdown-menu-in-ui>
+        </dropdown-menu-ui>
         <navbar-in-ui to="/guide">คู่มือผู้เล่นใหม่</navbar-in-ui>
         <navbar-in-ui to="/news">ข่าวสาร</navbar-in-ui>
         <navbar-in-ui to="/update">อัพเดท</navbar-in-ui>

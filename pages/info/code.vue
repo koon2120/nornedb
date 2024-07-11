@@ -1,13 +1,12 @@
 <script setup>
 const appConfig = useAppConfig();
-const supabase = useSupabaseClient();
 
 useSeoMeta({
   title: `รวมโค้ดเกม - ${appConfig.website_name}`,
   ogTitle: `รวมโค้ดเกม - ${appConfig.website_name}`,
   description: appConfig.default_og_description,
   ogDescription: appConfig.default_og_description,
-  ogImage: appConfig.default_og_image,
+  ogImage: "https://wcqoupeoqnvolpczgpkx.supabase.co/storage/v1/object/public/WebAssets/images/ui-inbox/nornedb_ui_inbox_code.webp",
   twitterCard: "summary_large_image",
 });
 
@@ -21,54 +20,43 @@ function yggdra_item_code_dropdown_change() {
     !yggdra_item_code_dropdown_options.value;
 }
 
-const { data: yggdra_item_code } = await useAsyncData("yggdra_item_code", async () => {
-  const { data } = await supabase
-    .from("yggdra_item_code")
-    .select()
-    .order("id", { ascending: true })
-  return data
-});
-
-const { data: yggdra_item_code_update } = await useAsyncData("yggdra_item_code_update", async () => {
-  const { data } = await supabase
-    .from("nornedb_webconfig")
-    .select("value")
-    .eq("key", "yggdra_item_code_update")
-  return data
-})
+const { data: yggdra_item_code } = await useFetch('/api/v1/code')
+const { data: yggdra_item_code_update } = await useFetch('/api/v1/webconfig/yggdra_item_code_update')
 </script>
 
 <template>
-  <h1 class="text-center my-4"><strong>รวมโค้ดเกม</strong></h1>
-  <div class="table-responsive">
-    <table class="table table-sm">
-      <caption>อัพเดทล่าสุดเมื่อวันที่ : {{ yggdra_item_code_update[0].value }}</caption>
-      <thead>
-        <tr>
-          <th scope="col">โค้ด</th>
-          <th scope="col">ได้รับ</th>
-        </tr>
-      </thead>
-      <tbody class="table-group-divider" v-if="yggdra_item_code_dropdown_options">
-        <tr v-for="code in yggdra_item_code" v-show="code.active">
-          <td>{{ code.code }} <span v-show="code.is_new" class="badge text-bg-danger">New</span></td>
-          <td>{{ code.receive }}</td>
-        </tr>
-      </tbody class="table-group-divider">
-      <tbody v-else>
-        <tr v-for="code in yggdra_item_code">
-          <td :class="{ 'text-danger': !code.active }">{{ code.code }} <span v-show="code.is_new"
-              class="badge text-bg-danger">New</span></td>
-          <td :class="{ 'text-danger': !code.active }">{{ code.receive }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <button type="button" class="btn btn-secondary btn-sm mb-3" @click="yggdra_item_code_dropdown_change">
-    {{
-      yggdra_item_code_dropdown_options
-        ? "แสดงโค้ดทั้งหมด"
-        : "แสดงโค้ดที่ยังใช้ได้"
-    }}
-  </button>
+  <dataview-page>
+    <h1 class="text-center my-4"><strong>รวมโค้ดเกม</strong></h1>
+    <div class="table-responsive">
+      <table class="table table-hover table-sm mb-2 align-middle">
+        <caption>อัพเดทล่าสุดเมื่อวันที่ : {{ yggdra_item_code_update.responseData[0].value }}</caption>
+        <thead>
+          <tr>
+            <th scope="col">โค้ด</th>
+            <th scope="col">ได้รับ</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider" v-if="yggdra_item_code_dropdown_options">
+          <tr v-for="code in yggdra_item_code.responseData" v-show="code.active">
+            <td>{{ code.code }} <span v-show="code.is_new" class="badge text-bg-danger">New</span></td>
+            <td>{{ code.receive }}</td>
+          </tr>
+        </tbody class="table-group-divider">
+        <tbody v-else>
+          <tr v-for="code in yggdra_item_code.responseData">
+            <td :class="{ 'text-danger': !code.active }">{{ code.code }} <span v-show="code.is_new"
+                class="badge text-bg-danger">New</span></td>
+            <td :class="{ 'text-danger': !code.active }">{{ code.receive }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <button type="button" class="btn btn-secondary btn-sm mb-3" @click="yggdra_item_code_dropdown_change">
+      {{
+        yggdra_item_code_dropdown_options
+          ? "แสดงโค้ดทั้งหมด"
+          : "แสดงโค้ดที่ยังใช้ได้"
+      }}
+    </button>
+  </dataview-page>
 </template>

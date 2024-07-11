@@ -1,4 +1,14 @@
 <script setup>
+const appConfig = useAppConfig();
+
+useSeoMeta({
+  title: `คลิกเพื่อรับสตามิน่าฟรี!!! - ${appConfig.website_name}`,
+  ogTitle: `คลิกเพื่อรับสตามิน่าฟรี!!! - ${appConfig.website_name}`,
+  description: appConfig.default_og_description,
+  ogDescription: appConfig.default_og_description,
+  ogImage: appConfig.default_og_image,
+  twitterCard: "summary_large_image",
+});
 
 const link = "https://youtu.be/g3jCAyPai2Y?si=1f8a-6_i9v-cc7W7&t=66"
 
