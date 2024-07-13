@@ -5,6 +5,8 @@ export default defineNuxtConfig({
 
   routeRules: {
     "/game-info/code": { redirect: "/info/code" },
+    "/free-stamina": { redirect: "https://youtu.be/g3jCAyPai2Y?si=1f8a-6_i9v-cc7W7&t=66" },
+    "/free-ether": { redirect: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" }
   },
 
   experimental: {

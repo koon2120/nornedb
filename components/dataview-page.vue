@@ -1,6 +1,6 @@
 <template>
     <div class="row justify-content-center">
-      <div class="col-sm-9">
+      <div class="col-sm-9 mb-5">
           <slot/>
       </div>
       <div class="col-sm-3">
