@@ -33,14 +33,12 @@ const { data: yggdra_item_code_update } = await useFetch('/api/v1/webconfig/yggd
         <thead>
           <tr>
             <th scope="col">โค้ด</th>
-            <th scope="col">วันที่แจก</th>
             <th scope="col">ได้รับ</th>
           </tr>
         </thead>
         <tbody class="table-group-divider" v-if="yggdra_item_code_dropdown_options">
           <tr v-for="code in yggdra_item_code.responseData" v-show="code.is_active">
             <td>{{ code.code }} <span v-show="code.is_new" class="badge text-bg-danger">New</span></td>
-            <td>{{ `${new Date(code.receive_date).toLocaleDateString('th-TH', {year: 'numeric',month: 'long',day: 'numeric',})}` }}</td>
             <td>{{ code.receive_item }}</td>
           </tr>
         </tbody class="table-group-divider">
@@ -48,7 +46,6 @@ const { data: yggdra_item_code_update } = await useFetch('/api/v1/webconfig/yggd
           <tr v-for="code in yggdra_item_code.responseData">
             <td :class="{ 'text-danger': !code.is_active }">{{ code.code }} <span v-show="code.is_new"
                 class="badge text-bg-danger">New</span></td>
-            <td :class="{ 'text-danger': !code.is_active }">{{ `${new Date(code.receive_date).toLocaleDateString('th-TH', {year: 'numeric',month: 'long',day: 'numeric',})}` }}</td>
             <td :class="{ 'text-danger': !code.is_active }">{{ code.receive_item }}</td>
           </tr>
         </tbody>

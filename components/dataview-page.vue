@@ -1,10 +1,10 @@
 <template>
     <div class="row justify-content-center">
-      <div class="col-sm-9 mb-5">
+      <div class="col-xl-9 mb-5">
           <slot/>
       </div>
-      <div class="col-sm-3">
-        <div class="mt-5">
+      <div class="col-xl-3">
+        <div class="row mt-5">
           <card-ui to="/info/code" image="https://wcqoupeoqnvolpczgpkx.supabase.co/storage/v1/object/public/WebAssets/images/ui-inbox/nornedb_ui_inbox_code.webp">
             <template #title>รวมโค้ดเกม</template>
             <template #description>รวมโค้ดเกมสำหรับนำไปกรอกรับไอเทมในเกมพร้อมอัพเดทล่าสุด</template>

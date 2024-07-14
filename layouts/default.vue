@@ -41,10 +41,8 @@ const { progress } = useLoadingIndicator();
     </navbar-ui>
   </header>
   <main class="default-fonts">
-    <div class="container mt-3">
-      <div class="col-lg mb-3">
+    <div class="container mt-3 mb-3">
         <slot></slot>
-      </div>
     </div>
   </main>
   <footer class="sarabun-medium"></footer>
