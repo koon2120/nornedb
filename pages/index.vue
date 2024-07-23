@@ -49,12 +49,12 @@ useSeoMeta({
     <div class="col-md-5 my-2">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title fw-bold">คู่มือผู้เล่นใหม่</h5>
+          <h5 class="card-title fw-bold">TOP 100 สงครามชมรม</h5>
           <p class="card-text text-body-secondary">
-            ไกด์คร่าวๆ เกี่ยวกับการเล่นเกม<br />Yggdra Chronicle
+            รวมสุดยอดชมรม 100 ชมรม<br />แห่งสงครามชมรม
           </p>
-          <NuxtLink class="btn btn-body-secondary disabled"
-            >ยังไม่พร้อม</NuxtLink
+          <NuxtLink to="/info/top100" class="btn btn-secondary"
+            >คลิกที่นี่</NuxtLink
           >
         </div>
       </div>

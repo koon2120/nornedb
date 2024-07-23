@@ -29,6 +29,7 @@ const { progress } = useLoadingIndicator();
         <dropdown-menu-ui label="ข้อมูลทั่วไป">
           <dropdown-menu-in-ui to="/info/code">รวมโค้ดเกม</dropdown-menu-in-ui>
           <dropdown-menu-in-ui to="/info/seiyuu">ข้อมูลนักพากย์</dropdown-menu-in-ui>
+          <dropdown-menu-in-ui to="/info/top100">TOP 100 สงครามชมรม</dropdown-menu-in-ui>
         </dropdown-menu-ui>
         <dropdown-menu-ui label="ข้อมูลภายในเกม">
           <dropdown-menu-in-ui to="/data/character">ข้อมูลตัวละคร</dropdown-menu-in-ui>
