@@ -6,7 +6,7 @@ const { data, status, error, refresh, clear } = await useAsyncData('yggdra_top10
 
 async function OnPageChange() {
   if (route.query.ss == undefined) {
-    await navigateTo({ path: "/info/top100", query: { ss: 3 } })
+    await navigateTo({ path: "/info/top100", query: { ss: 4 } })
   }
 }
 
@@ -54,7 +54,7 @@ useSeoMeta({
               :to="{ path: '/info/top100', query: { ss: new Number(route.query.ss) - 1 } }"><b>ก่อนหน้านี้</b></NuxtLink>
           </li>
           <li class="page-item">
-            <NuxtLink :class="{ 'page-link': true, 'disabled': false }"
+            <NuxtLink :class="{ 'page-link': true, 'disabled': route.query.ss >= 4 }"
               :to="{ path: '/info/top100', query: { ss: new Number(route.query.ss) + 1 } }"><b>หลังจากนี้</b></NuxtLink>
           </li>
         </ul>
