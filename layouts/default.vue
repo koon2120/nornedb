@@ -6,19 +6,9 @@ const { progress } = useLoadingIndicator();
 
 <template>
   <header class="sarabun-semibold">
-    <div
-      class="progress"
-      role="progressbar"
-      aria-label="Example 1px high"
-      :aria-valuenow="progress"
-      aria-valuemin="0"
-      aria-valuemax="100"
-      style="height: 1px"
-    >
-      <div
-        class="progress-bar bg-secondary"
-        :style="{ width: progress + '%' }"
-      ></div>
+    <div class="progress" role="progressbar" aria-label="Example 1px high" :aria-valuenow="progress" aria-valuemin="0"
+      aria-valuemax="100" style="height: 1px">
+      <div class="progress-bar bg-secondary" :style="{ width: progress + '%' }"></div>
     </div>
     <navbar-ui>
       <template v-slot:title>
@@ -43,7 +33,10 @@ const { progress } = useLoadingIndicator();
   </header>
   <main class="default-fonts">
     <div class="container mt-3 mb-3">
-        <slot></slot>
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>ประกาศ!</strong> หยุดการอัพเดทข้อมูลตั้งแต่วันที่ 31 กรกฎาคม 2567 เป็นต้นไป ขอบคุณที่สนับสนุนเรามาโดยตลอด
+      </div>
+      <slot></slot>
     </div>
   </main>
   <footer class="sarabun-medium"></footer>

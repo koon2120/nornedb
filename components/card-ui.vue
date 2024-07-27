@@ -12,8 +12,7 @@ const props = defineProps(["to", "image"]);
         </h5>
         <p class="card-text"><slot name="description"></slot></p>
         <NuxtLink :to="props.to" class="btn btn-secondary"
-          ><slot name="button"></slot
-        ></NuxtLink>
+          ><slot name="button"></slot></NuxtLink>
       </div>
     </div>
   </div>

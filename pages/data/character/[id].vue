@@ -27,9 +27,6 @@ useSeoMeta({
 
 <template>
   <dataview-page>
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-      <strong>เกือบจะเรียบร้อยแล้ว!</strong> เรากำลังเพิ่มข้อมูลตัวละครในเร็วๆ นี้ โปรดรอติดตาม!!
-    </div>
     <div class="mt-5">
       <img
         :src="
