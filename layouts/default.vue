@@ -24,9 +24,6 @@ const { progress } = useLoadingIndicator();
         <dropdown-menu-ui label="ข้อมูลภายในเกม">
           <dropdown-menu-in-ui to="/data/character">ข้อมูลตัวละคร</dropdown-menu-in-ui>
         </dropdown-menu-ui>
-        <navbar-in-ui to="/guide">คู่มือผู้เล่นใหม่</navbar-in-ui>
-        <navbar-in-ui to="/news">ข่าวสาร</navbar-in-ui>
-        <navbar-in-ui to="/update">อัพเดท</navbar-in-ui>
         <dropdown-menu-ui label="โซนพักผ่อน" disabled="true"></dropdown-menu-ui>
       </template>
     </navbar-ui>

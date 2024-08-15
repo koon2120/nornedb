@@ -29,7 +29,7 @@ const { data: yggdra_item_code_update } = await useFetch('/api/v1/webconfig/yggd
     <h1 class="text-center my-4"><strong>รวมโค้ดเกม</strong></h1>
     <div class="table-responsive">
       <table class="table table-hover table-sm mb-2 align-middle">
-        <caption>อัพเดทล่าสุดเมื่อ{{ `${new Date(yggdra_item_code_update.responseData[0].value).toLocaleDateString('th-TH', {year: 'numeric',month: 'long',day: 'numeric',weekday: 'long',})}` }}</caption>
+        <caption>อัพเดทล่าสุดเมื่อ{{ `${new Date(yggdra_item_code_update.responseData[0].value).toLocaleDateString('th-TH', {year: 'numeric',month: 'long',day: 'numeric',weekday: 'long',})}` }} <span class="text-warning">*หยุดอัพเดทข้อมูลแล้ว</span></caption>
         <thead>
           <tr>
             <th scope="col">โค้ด</th>
@@ -51,12 +51,12 @@ const { data: yggdra_item_code_update } = await useFetch('/api/v1/webconfig/yggd
         </tbody>
       </table>
     </div>
-    <button type="button" class="btn btn-secondary btn-sm mb-3" @click="yggdra_item_code_dropdown_change">
+    <!-- <button type="button" class="btn btn-secondary btn-sm mb-3" @click="yggdra_item_code_dropdown_change">
       {{
         yggdra_item_code_dropdown_options
           ? "แสดงโค้ดทั้งหมด"
           : "แสดงโค้ดที่ยังใช้ได้"
       }}
-    </button>
+    </button> -->
   </dataview-page>
 </template>
